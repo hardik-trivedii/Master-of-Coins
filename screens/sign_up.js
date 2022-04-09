@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, Text, Pressable, StyleSheet, Alert, ActivityIndicator} from 'react-native'
+import {View, TextInput, Text, Pressable, StyleSheet, Alert, ActivityIndicator, ScrollView, Image} from 'react-native'
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
 
@@ -16,7 +16,11 @@ function SignUpScreen({navigation}){
     const [isProcessing, setIsProcessing] = React.useState(false);
 
     return(
-        <View style = {styles.container}> 
+        <ScrollView keyboardDismissMode="interactive" keyboardShouldPersistTaps='handled'>
+            <Image
+                style={styles.image_logo}
+                source = {require('../assets/icon.png')}/>
+
             <TextInput 
                 style = {styles.text_field}
                 onChangeText={(text)=>{
@@ -134,7 +138,7 @@ function SignUpScreen({navigation}){
                 size='large'
                 animating={isProcessing}/>
             
-        </View>
+        </ScrollView>
     );
 }
 
@@ -184,6 +188,13 @@ const styles = StyleSheet.create({
         borderRadius: 10, 
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    image_logo: {
+        height: 100,
+        width: 100,
+        marginTop: 100,
+        marginBottom: 100,
+        alignSelf: 'center'
     }
 })
 export default SignUpScreen;

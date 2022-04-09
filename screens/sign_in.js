@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, TextInput, Text, Pressable, StyleSheet, ActivityIndicator, Alert, ScrollView, SafeAreaView} from 'react-native'
+import {View, TextInput, Text, Pressable, StyleSheet, 
+    ActivityIndicator, Alert, ScrollView, SafeAreaView, Image} from 'react-native'
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
 
@@ -12,9 +13,11 @@ function SignInScreen({navigation}){
     const [isProcessing, setIsProcessing] = React.useState(false)
 
     return(
-        <SafeAreaView>
-        <ScrollView > 
-        <View style = {styles.container}>
+        <ScrollView keyboardDismissMode="interactive" keyboardShouldPersistTaps='handled'> 
+            <Image
+                style={styles.image_logo}
+                source = {require('../assets/icon.png')}/>
+
             <TextInput 
                 style = {styles.text_field}
                 onChangeText={(text)=>{
@@ -37,36 +40,47 @@ function SignInScreen({navigation}){
                     styles.button
                 ]}
                 onPress={()=>{
-                    setIsProcessing(true)
-                    signIn(emailText, password, (success, reason)=>{
-                        setIsProcessing(false)
-                        if(success){
-                            navigation.dispatch(
-                                CommonActions.reset({
-                                  index: 0,
-                                  routes: [{ name: "DashboardScreen" }]
-                                }));
-                        }else{
-                            var title, subTitle;
-                            if(reason == ERROR_REASON_NO_USER){
-                                title = "User Not Found"
-                                subTitle = "There is no user registered with this Email address."
-                            }else if(reason == ERROR_REASON_INCORRECT_PASSWORD){
-                                title = "Incorrect Password"
-                                subTitle = "The password is incorrect. Please enter correct password."
-                            }else if(reason == ERROR_REASON_FETCH_FAILURE){
-                                title = "Something went wrong"
-                                subTitle = "It seems like there is something wrong with connecting to us. Please try again."
+                    if(emailText == '' || password == ''){
+                        Alert.alert(
+                            "Fields are empty",
+                            "Email or Password field cannot be empty. Please enter all the details.",
+                            [
+                                {text: 'OK', onPress:()=>{}}
+                            ]
+                        )
+                    }
+                    else {
+                        setIsProcessing(true)
+                        signIn(emailText, password, (success, reason)=>{
+                            setIsProcessing(false)
+                            if(success){
+                                navigation.dispatch(
+                                    CommonActions.reset({
+                                    index: 0,
+                                    routes: [{ name: "DashboardScreen" }]
+                                    }));
+                            }else{
+                                var title, subTitle;
+                                if(reason == ERROR_REASON_NO_USER){
+                                    title = "User Not Found"
+                                    subTitle = "There is no user registered with this Email address."
+                                }else if(reason == ERROR_REASON_INCORRECT_PASSWORD){
+                                    title = "Incorrect Password"
+                                    subTitle = "The password is incorrect. Please enter correct password."
+                                }else if(reason == ERROR_REASON_FETCH_FAILURE){
+                                    title = "Something went wrong"
+                                    subTitle = "It seems like there is something wrong with connecting to us. Please try again."
+                                }
+                                Alert.alert(
+                                    title,
+                                    subTitle,
+                                    [
+                                        {text: "OK", onPress: ()=>{}}
+                                    ]
+                                )
                             }
-                            Alert.alert(
-                                title,
-                                subTitle,
-                                [
-                                    {text: "OK", onPress: ()=>{}}
-                                ]
-                            )
-                        }
-                    })
+                        })
+                    }
                 }}>
                 <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>Sign In</Text>
             </Pressable>
@@ -94,9 +108,7 @@ function SignInScreen({navigation}){
                 size='large'
                 animating={isProcessing}/>
             
-            </View>
         </ScrollView>
-        </SafeAreaView>
     );
 }
 
@@ -141,6 +153,13 @@ const styles = StyleSheet.create({
         borderRadius: 10, 
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    image_logo: {
+        height: 100,
+        width: 100,
+        marginTop: 200,
+        marginBottom: 100,
+        alignSelf: 'center'
     }
 })
 export default SignInScreen;
