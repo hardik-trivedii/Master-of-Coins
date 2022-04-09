@@ -3,6 +3,7 @@ import { ref, onValue, getDatabase } from "firebase/database";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignInScreen from './screens/sign_in'
+import SignUpScreen from './screens/sign_up';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDv00MUbusng7OKLpCZIindbQe9ZGE2yo4",
@@ -28,6 +29,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName = 'SignInScreen'>
         <Stack.Screen name = 'SignInScreen' component = {SignInScreen}/>
+        <Stack.Screen name = 'SignUpScreen' component = {SignUpScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -4,14 +4,17 @@ import {View, TextInput, Text, Pressable, StyleSheet} from 'react-native'
 const EMAIL_PLACEHOLDER_TEXT = "Email";
 const PASSWORD_PLACEHOLDER_TEXT = "Password";
 
-function SignInScreen(){
+function SignInScreen({navigation}){
     const [emailText, onChangeEmailText] = React.useState('')
     const [password, onChangePasswordText] = React.useState('')
     return(
         <View style = {styles.container}> 
             <TextInput 
                 style = {styles.text_field}
-                onChangeText={onChangeEmailText} 
+                onChangeText={(text)=>{
+                    onChangeEmailText(text);
+                    console.log(text);
+                }} 
                 value={emailText}
                 placeholder={EMAIL_PLACEHOLDER_TEXT}/>
 
@@ -34,7 +37,13 @@ function SignInScreen(){
 
             <View style = {{flexDirection: 'row', alignSelf: 'center'}}>
                 <Text style={{alignSelf: 'center'}}>New User?</Text>
-                <Text style={{marginLeft: 5, color: 'blue', alignSelf: 'center'}}>Create Account</Text>
+                <Text 
+                    style={{marginLeft: 5, color: 'blue', alignSelf: 'center'}}
+                    onPress = {()=>{
+                        navigation.navigate('SignUpScreen')
+                    }}>
+                    Create Account
+                </Text>
             </View>
             
             <Text style={{marginTop: 10, color: 'blue', alignSelf: 'center'}}>Forgot Password?</Text>
