@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TextInput, Text, Pressable, StyleSheet, Alert, ActivityIndicator} from 'react-native'
 import { getDatabase, ref, set, get, child } from "firebase/database";
+import { CommonActions } from '@react-navigation/native';
 
 const NAME_PLACEHOLDER_TEXT = "Name";
 const EMAIL_PLACEHOLDER_TEXT = "Email";
@@ -79,7 +80,11 @@ function SignUpScreen({navigation}){
                                     "Welcome to Master of Coins.",
                                     [
                                         {text: "OK", onPress: ()=>{
-                                            navigation.navigate('SignInScreen')
+                                            navigation.dispatch(
+                                                CommonActions.reset({
+                                                  index: 0,
+                                                  routes: [{ name: "DashboardScreen" }]
+                                                }));
                                         }}
                                     ]
                                 );
@@ -110,10 +115,21 @@ function SignUpScreen({navigation}){
 
             <View style = {{flexDirection: 'row', alignSelf: 'center'}}>
                 <Text style={{alignSelf: 'center'}}>Already User?</Text>
-                <Text style={{marginLeft: 5, color: 'blue', alignSelf: 'center'}}>Sign In</Text>
+                <Text 
+                    style={{marginLeft: 5, color: 'blue', alignSelf: 'center'}}
+                    onPress = {()=>{
+                        navigation.dispatch(
+                            CommonActions.reset({
+                              index: 0,
+                              routes: [{ name: "SignInScreen" }]
+                            }));
+                    }}>
+                        Sign In
+                </Text>
             </View>
 
             <ActivityIndicator
+                style={{marginTop: 10}}
                 hidesWhenStopped={true}
                 size='large'
                 animating={isProcessing}/>
@@ -127,13 +143,13 @@ const ERROR_REASON_SAVING_FAILURE = "saving_failure"
 const ERROR_REASON_FETCHING_FAILURE = "fetching_failure"
 
 function register_user(name, email, password, onCompleted){
-    email = email.replace(/\./g, "_");
+    var userID = email.replace(/\./g, "_");
     const database = getDatabase();
-    get(child(ref(database), 'users/' + email)).then((snapshot) => {
+    get(child(ref(database), 'users/' + userID)).then((snapshot) => {
         if (snapshot.exists()) {
           onCompleted(false, ERROR_REASON_DUPLICATE_USER)
         } else {
-            set(ref(database, 'users/' + email), {
+            set(ref(database, 'users/' + userID), {
                 name: name,
                 email: email,
                 password : password
