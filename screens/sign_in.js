@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, TextInput, Text, Pressable, StyleSheet, 
     ActivityIndicator, Alert, ScrollView, SafeAreaView, Image} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
+import UserData from '../helpers/user-data';
 
 const EMAIL_PLACEHOLDER_TEXT = "Email";
 const PASSWORD_PLACEHOLDER_TEXT = "Password";
@@ -116,13 +118,20 @@ const ERROR_REASON_NO_USER = "user_not_found"
 const ERROR_REASON_INCORRECT_PASSWORD = "incorrect_password"
 const ERROR_REASON_FETCH_FAILURE = "fetching_failure"
 
+const user_data = UserData.getInstance();
 function signIn(email, password, onCompleted){
     var userID = email.replace(/\./g, "_");
     const database = getDatabase();
     get(child(ref(database), 'users/' + userID)).then((snapshot) => {
         if (snapshot.exists()) {
           if(snapshot.val().email == email && snapshot.val().password == password){
-            onCompleted(true, null)
+            user_data.name = snapshot.val().name;
+            user_data.email = snapshot.val().email;
+            user_data.password = snapshot.val().password; 
+            storeUserCreds(snapshot.val().email, snapshot.val().password, (success)=>{
+                onCompleted(true, null)
+            }) 
+            
           }else{
             onCompleted(false, ERROR_REASON_INCORRECT_PASSWORD)
           }
@@ -133,6 +142,21 @@ function signIn(email, password, onCompleted){
         console.log(error)
         onCompleted(false, ERROR_REASON_FETCH_FAILURE)
     });
+}
+
+function storeUserCreds(email, password, onCompleted) {
+    try {
+        const userCredentials = JSON.stringify({
+            email: email,
+            password: password
+        })
+        AsyncStorage.setItem('user_creds', userCredentials).then(()=>{
+            onCompleted(true)
+        });
+      } catch (e) {
+        console.log(e)
+        onCompleted(false)
+      }
 }
 
 const styles = StyleSheet.create({
