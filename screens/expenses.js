@@ -9,7 +9,7 @@ function ExpensesScreen({navigation}){
                 text = "Personal Expenses"
                 color = '#8BC34A'
                 onClick = {()=>{
-
+                    navigation.navigate('PersonalExpenseScreen')
                 }}/>
             
             <WideTile

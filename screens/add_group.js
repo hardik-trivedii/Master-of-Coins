@@ -45,7 +45,7 @@ function AddGroupScreen({navaigation}){
                 renderItem = {({item})=>{
                     return(
                     <Text 
-                        style = {{margin: 5, fontSize: 20, textAlign: 'center', backgroundColor: 'white', borderRadius: 5}}
+                        style = {{margin: 10, fontSize: 20, textAlign: 'center', backgroundColor: 'white', borderRadius: 5}}
                         onPress = {()=>{
                             // ask to Delete item if clicked
                         }}>{item}</Text>

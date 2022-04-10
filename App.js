@@ -8,6 +8,8 @@ import DashboardScreen from './screens/dashboard';
 import ExpensesScreen from './screens/expenses';
 import GroupsScreen from './screens/groups';
 import AddGroupScreen from './screens/add_group';
+import PersonalExpenseScreen from './screens/personal-expense';
+import AddPersonalExpenseScreen from './screens/add-personal-expense';
 import { Pressable, Text } from 'react-native';
 
 const firebaseConfig = {
@@ -39,6 +41,7 @@ export default function App() {
             title: 'Groups',
             headerRight: ()=>(
               <Pressable
+              style = {{margin: 5}}
                 onPress = {()=>{
                   navigation.navigate('AddGroupScreen')
                 }}>
@@ -53,12 +56,33 @@ export default function App() {
             title: 'Add Group',
             headerRight: ()=>(
               <Pressable
+                style = {{margin: 5}}
                 onPress = {()=>{
                   
                 }}>
                   <Text style = {{color: 'blue'}}>Save</Text>
                 </Pressable>
             )
+          })}/>
+          <Stack.Screen 
+            name = 'PersonalExpenseScreen' 
+            component={PersonalExpenseScreen} 
+            options = {({navigation})=>({
+              title: 'Personal Expenses',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddPersonalExpenseScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddPersonalExpenseScreen" 
+          component={AddPersonalExpenseScreen} 
+          options = {({navigation})=>({
+            title: 'Add Personal Expense',
           })}/>
       </Stack.Navigator>
     </NavigationContainer>

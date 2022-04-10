@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Pressable, Text, StyleSheet} from 'react-native'
 
+
 function Tile(props){
     return(
         <Pressable 
@@ -34,10 +35,10 @@ function ListItemTile(props){
 function ListItem(props){
     return(
         <Pressable
-            style = {{flex: 1, borderRadius: 10, borderColor: 'gray', borderWidth: 1}}
+            style = {{flex: 1, borderRadius: 10, borderColor: 'gray', borderWidth: 1, margin: 5, backgroundColor: 'white'}}
             onPress = {props.onItemClick}>
-            <Text style = {{flex: 1, fontSize: 20, margin: 5}}>{props.title}</Text>
-            <Text style = {{flex: 2, fontSize: 40, fontWeight: 'bold', margin: 5}}>${props.price}</Text>
+            <Text style = {{flex: 1, fontSize: 15, margin: 5}}>{props.title}</Text>
+            <Text style = {{flex: 2, fontSize: 30, fontWeight: 'bold', margin: 5}}>${props.price}</Text>
             <Text style = {{flex: 1, margin: 5}}>{props.timestamp}</Text>
         </Pressable>
     )

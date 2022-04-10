@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getDatabase, ref, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
 import UserData from '../helpers/user-data';
-import {Group, Member} from '../helpers/data-models'
+import {Group, Member, Expense} from '../helpers/data-models'
 
 function SplashScreen({navigation}){
     const [isProcessing, setIsProcessing] = React.useState(true)
@@ -44,32 +44,52 @@ function downloadData(navigation){
                 get(child(ref(database), 'users/' + userID)).then((snapshot) => {
                     if (snapshot.exists()) {
                     if(snapshot.val().email == userCredentials.email && snapshot.val().password == userCredentials.password){
+                        user_data.userID = snapshot.key;
                         user_data.name = snapshot.val().name;
                         user_data.email = snapshot.val().email;
                         user_data.password = snapshot.val().password; 
-                        
-                        // Fetching groups data
-                        var groupsPromises = snapshot.val().groups.map(id => {
-                            return get(child(ref(database), 'groups/' + id))
-                          })
-                        Promise.all(groupsPromises).then((groups) => {
-                            user_data.groups = []
-                            groups.forEach(data =>{
-                                var group = new Group(data.key, data.val().name)
-                                data.val().members.forEach(element =>{
-                                    group.members.push(new Member(element.userID, element.name, element.email))
-                                })
-                                user_data.groups.push(group)                           
+                        //parsing personal expenses in our model
+                        if(snapshot.val().personal_expenses != null){
+                            user_data.personal_expenses = []
+                            var index = 0
+                            snapshot.val().personal_expenses.forEach(element=>{
+                            var expense = new Expense(index, element.text, element.price, element.time);
+                            user_data.personal_expenses.push(expense)
+                            index += 1
+                        })
+                        }
+                        if(snapshot.val().groups != null){
+                            // Fetching groups data
+                            var groupsPromises = snapshot.val().groups.map(id => {
+                                return get(child(ref(database), 'groups/' + id))
                             })
-                            // All Done, Lets go to Dashboard
+                            Promise.all(groupsPromises).then((groups) => {
+                                user_data.groups = []
+                                groups.forEach(data =>{
+                                    var group = new Group(data.key, data.val().name)
+                                    data.val().members.forEach(element =>{
+                                        group.members.push(new Member(element.userID, element.name, element.email))
+                                    })
+                                    user_data.groups.push(group)                           
+                                })
+                                // All Done, set value update callbacks and Lets go to Dashboard
+                                
+                                navigation.dispatch(
+                                    CommonActions.reset({
+                                    index: 0,
+                                    routes: [{ name: "DashboardScreen" }]
+                                    }));
+                                
+                            }).catch((error)=>{
+                                console.log(error)
+                            });
+                        }else{
                             navigation.dispatch(
                                 CommonActions.reset({
                                   index: 0,
                                   routes: [{ name: "DashboardScreen" }]
                                 }));
-                        }).catch((error)=>{
-                            console.log(error)
-                        });
+                        }
                     }else{
                         onCompleted(false, ERROR_REASON_INCORRECT_PASSWORD)
                     }

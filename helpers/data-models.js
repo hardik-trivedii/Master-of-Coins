@@ -20,3 +20,20 @@ export class Member{
         this.email = email
     }
 }
+
+export class Expense{
+    id = 0
+    text = ''
+    price = 0.00
+    time = ''
+    constructor(id, text, price, time){
+        this.id = id;
+        this.text = text;
+        this.time = time;
+        this.price = price;
+    }
+}
+
+export class GroupExpense extends Expense{
+
+}
