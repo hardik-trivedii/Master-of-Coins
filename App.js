@@ -21,6 +21,9 @@ import AddGiftScreen from './screens/add_gift';
 import DebtsScreen from './screens/debts';
 import AddDebtScreen from './screens/add_debt';
 import { Pressable, Text } from 'react-native';
+import ProfileSettingsScreen from './screens/profile_settings';
+import ChangeNameScreen from './screens/change_name';
+import ChangePasswordScreen from './screens/change_password';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDv00MUbusng7OKLpCZIindbQe9ZGE2yo4",
@@ -193,6 +196,24 @@ export default function App() {
           component={AddDebtScreen} 
           options = {({navigation})=>({
             title: 'Add Debt',
+          })}/>
+          <Stack.Screen 
+          name = "ProfileSettingsScreen" 
+          component={ProfileSettingsScreen} 
+          options = {({navigation})=>({
+            title: 'Settings',
+          })}/>
+          <Stack.Screen 
+          name = "ChangeNameScreen" 
+          component={ChangeNameScreen} 
+          options = {({navigation})=>({
+            title: 'Change Name',
+          })}/>
+          <Stack.Screen 
+          name = "ChangePasswordScreen" 
+          component={ChangePasswordScreen} 
+          options = {({navigation})=>({
+            title: 'Change Password',
           })}/>
       </Stack.Navigator>
     </NavigationContainer>

@@ -27,7 +27,7 @@ function DashboardScreen({navigation}){
                 <Pressable
                     style = {{height: 40, width: 40, margin: 10}}
                     onPress = {()=>{
-                        
+                        navigation.navigate('ProfileSettingsScreen')
                     }}>    
                 <Image
                     style = {{height: 40, width: 40}}

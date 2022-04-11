@@ -34,7 +34,8 @@ function SignInScreen({navigation}){
                     onChangePasswordText(text);
                 }} 
                 value={password}
-                placeholder={PASSWORD_PLACEHOLDER_TEXT}/>
+                placeholder={PASSWORD_PLACEHOLDER_TEXT}
+                secureTextEntry = {true}/>
 
             <Pressable
                 style = {({pressed})=>[
@@ -125,6 +126,7 @@ function signIn(email, password, onCompleted){
     get(child(ref(database), 'users/' + userID)).then((snapshot) => {
         if (snapshot.exists()) {
           if(snapshot.val().email == email && snapshot.val().password == password){
+            user_data.userID = snapshot.key;
             user_data.name = snapshot.val().name;
             user_data.email = snapshot.val().email;
             user_data.password = snapshot.val().password; 
@@ -187,3 +189,4 @@ const styles = StyleSheet.create({
     }
 })
 export default SignInScreen;
+export {storeUserCreds};
