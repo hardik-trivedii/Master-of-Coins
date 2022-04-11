@@ -47,6 +47,21 @@ export class Income{
     }
 }
 
+export class Debt{
+    id = ''
+    text = ''
+    amount = 0.00
+    time = ''
+    isCleared = false
+    constructor(id, text, amount, time, isCleared){
+        this.id = id;
+        this.text = text;
+        this.time = time;
+        this.amount = amount;
+        this.isCleared = isCleared
+    }
+}
+
 export class GroupExpense extends Expense{
 
 }

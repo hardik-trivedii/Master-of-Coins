@@ -39,7 +39,7 @@ function PersonalExpenseScreen({navigation}){
                     timestamp = {item.time}
                     onItemClick = {()=>{
                         Alert.alert(
-                            "$" + item.price,
+                            "Personal Expense of $" + item.price,
                             "Description: " + item.text +"\nTime: " + item.time,
                             [
                                 {text: "Edit", onPress: ()=>{

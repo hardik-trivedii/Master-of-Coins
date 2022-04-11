@@ -6,18 +6,18 @@ import { Income } from '../helpers/data-models'
 import { remove, ref, getDatabase } from 'firebase/database'
 
 const user_data = UserData.getInstance()
-function IncomesScreen({navigation}){
-    const [incomes, setIncomes] = React.useState(user_data.incomes)
+function DonationsScreen({navigation}){
+    const [donations, setDonations] = React.useState(user_data.helps)
     React.useEffect(()=>{
         const abortController = new AbortController()
-        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/incomes', (snapshot)=>{
+        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/donations', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
-                user_data.incomes = []
+                user_data.helps = []
                 snapshot.forEach(element => {
-                    user_data.incomes.push(new Income(element.key, element.val().text, element.val().amount, element.val().time))
+                    user_data.helps.push(new Income(element.key, element.val().text, element.val().amount, element.val().time))
                 });
-                setIncomes(user_data.incomes)
+                setDonations(user_data.helps)
             }
         })
 
@@ -28,7 +28,7 @@ function IncomesScreen({navigation}){
 
      return(
         <FlatList
-            data = {incomes}
+            data = {donations}
             renderItem = {({item})=>{
                 return(
                     <ListItem
@@ -37,22 +37,22 @@ function IncomesScreen({navigation}){
                     timestamp = {item.time}
                     onItemClick = {()=>{
                         Alert.alert(
-                            "Income of $" + item.amount,
+                            "Help of $" + item.amount,
                             "Description: " + item.text +"\nTime: " + item.time,
                             [
                                 {text: "Edit", onPress: ()=>{
-                                    navigation.navigate('AddIncomeScreen', {
+                                    navigation.navigate('AddDonationScreen', {
                                         id: item.id,
                                         text: item.text,
                                         amount: item.amount
                                     })
                                 }},
                                 {text: "Delete", style: 'destructive', onPress: ()=>{
-                                    if(user_data.incomes.length == 1){
-                                        setIncomes([])
-                                        user_data.incomes = []
+                                    if(user_data.helps.length == 1){
+                                        setDonations([])
+                                        user_data.helps = []
                                     }
-                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/incomes/'+item.id))
+                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/donations/'+item.id))
                                     .catch((error)=>{
                                         console.log(error)
                                         Alert.alert(
@@ -75,7 +75,7 @@ function IncomesScreen({navigation}){
         ListEmptyComponent = {()=>{
             return(
                 <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style = {{marginTop: 200}}>No Incomes Added.</Text>
+                    <Text style = {{marginTop: 200}}>No Donations Added.</Text>
                 </View>
                 
             )
@@ -83,4 +83,4 @@ function IncomesScreen({navigation}){
     )
 }
 
-export default IncomesScreen;
+export default DonationsScreen;

@@ -48,18 +48,6 @@ function downloadData(navigation){
                         user_data.name = snapshot.val().name;
                         user_data.email = snapshot.val().email;
                         user_data.password = snapshot.val().password; 
-                        //parsing personal expenses in our model
-                        get(child(ref(database), 'users/' + userID + '/personal_expenses')).then((expenses)=>{
-                            if(expenses.exists()){
-                                user_data.personal_expenses = []
-                                var index = 0
-                                expenses.forEach(element=>{
-                                var expense = new Expense(element.key, element.val().text, element.val().price, element.val().time);
-                                user_data.personal_expenses.push(expense)
-                                index += 1
-                                })
-                            }
-                        })
                         
                         if(snapshot.val().groups != null){
                             // Fetching groups data

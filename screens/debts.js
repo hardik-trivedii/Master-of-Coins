@@ -1,23 +1,23 @@
 import React from 'react'
 import {FlatList, Alert, Text, View} from 'react-native'
 import UserData from '../helpers/user-data'
-import {ListItem} from '../helpers/my-components'
-import { Income } from '../helpers/data-models'
-import { remove, ref, getDatabase } from 'firebase/database'
+import {ListItemWithButton} from '../helpers/my-components'
+import { Debt } from '../helpers/data-models'
+import { remove, ref, getDatabase, update } from 'firebase/database'
 
 const user_data = UserData.getInstance()
-function IncomesScreen({navigation}){
-    const [incomes, setIncomes] = React.useState(user_data.incomes)
+function DebtsScreen({navigation}){
+    const [debts, setDebts] = React.useState(user_data.debts)
     React.useEffect(()=>{
         const abortController = new AbortController()
-        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/incomes', (snapshot)=>{
+        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/debts', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
-                user_data.incomes = []
+                user_data.debts = []
                 snapshot.forEach(element => {
-                    user_data.incomes.push(new Income(element.key, element.val().text, element.val().amount, element.val().time))
+                    user_data.debts.push(new Debt(element.key, element.val().text, element.val().amount, element.val().time, element.val().isCleared))
                 });
-                setIncomes(user_data.incomes)
+                setDebts(user_data.debts)
             }
         })
 
@@ -28,31 +28,44 @@ function IncomesScreen({navigation}){
 
      return(
         <FlatList
-            data = {incomes}
+            data = {debts}
             renderItem = {({item})=>{
                 return(
-                    <ListItem
+                    <ListItemWithButton
                     title = {item.text}
                     price = {item.amount}
                     timestamp = {item.time}
+                    buttonText = {item.isCleared ? 'Cleared' : 'Clear'}
+                    buttonColor = {item.isCleared ? '#8BC34A' : '#F44336'}
+                    onButtonClicked = {()=>{
+                        const updates = {};
+                        updates['users/'+user_data.userID+'/debts/'+item.id] = {
+                            text: item.text,
+                            amount: item.amount,
+                            time: item.time,
+                            isCleared: !item.isCleared
+                        };
+                        update(ref(getDatabase()), updates)
+                    }}
                     onItemClick = {()=>{
                         Alert.alert(
-                            "Income of $" + item.amount,
+                            "Debt of $" + item.amount + " [" + (item.isCleared ? 'Cleared]' : 'Not Cleared]'),
                             "Description: " + item.text +"\nTime: " + item.time,
                             [
                                 {text: "Edit", onPress: ()=>{
-                                    navigation.navigate('AddIncomeScreen', {
+                                    navigation.navigate('AddDebtScreen', {
                                         id: item.id,
                                         text: item.text,
-                                        amount: item.amount
+                                        amount: item.amount,
+                                        isCleared: item.isCleared
                                     })
                                 }},
                                 {text: "Delete", style: 'destructive', onPress: ()=>{
-                                    if(user_data.incomes.length == 1){
-                                        setIncomes([])
-                                        user_data.incomes = []
+                                    if(user_data.debts.length == 1){
+                                        setDebts([])
+                                        user_data.debts = []
                                     }
-                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/incomes/'+item.id))
+                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/debts/'+item.id))
                                     .catch((error)=>{
                                         console.log(error)
                                         Alert.alert(
@@ -75,7 +88,7 @@ function IncomesScreen({navigation}){
         ListEmptyComponent = {()=>{
             return(
                 <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style = {{marginTop: 200}}>No Incomes Added.</Text>
+                    <Text style = {{marginTop: 200}}>No Debts Added.</Text>
                 </View>
                 
             )
@@ -83,4 +96,4 @@ function IncomesScreen({navigation}){
     )
 }
 
-export default IncomesScreen;
+export default DebtsScreen;

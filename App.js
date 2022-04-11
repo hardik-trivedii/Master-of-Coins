@@ -14,6 +14,12 @@ import IncomesScreen from './screens/income';
 import AddIncomeScreen from './screens/add_income';
 import SavingsScreen from './screens/savings';
 import AddSavingScreen from './screens/add_saving';
+import DonationsScreen from './screens/donations';
+import AddDonationScreen from './screens/add_donation';
+import GiftsScreen from './screens/gifts';
+import AddGiftScreen from './screens/add_gift';
+import DebtsScreen from './screens/debts';
+import AddDebtScreen from './screens/add_debt';
 import { Pressable, Text } from 'react-native';
 
 const firebaseConfig = {
@@ -112,7 +118,7 @@ export default function App() {
             name = 'SavingsScreen' 
             component={SavingsScreen} 
             options = {({navigation})=>({
-              title: 'Incomes',
+              title: 'Savings',
               headerRight: ()=>(
                 <Pressable
                   onPress = {()=>{
@@ -127,6 +133,66 @@ export default function App() {
           component={AddSavingScreen} 
           options = {({navigation})=>({
             title: 'Add Saving',
+          })}/>
+          <Stack.Screen 
+            name = 'DonationsScreen' 
+            component={DonationsScreen} 
+            options = {({navigation})=>({
+              title: 'Donations/Help',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddDonationScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddDonationScreen" 
+          component={AddDonationScreen} 
+          options = {({navigation})=>({
+            title: 'Add Donation/Help',
+          })}/>
+          <Stack.Screen 
+            name = 'GiftsScreen' 
+            component={GiftsScreen} 
+            options = {({navigation})=>({
+              title: 'Gifts/Prizes',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddGiftScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddGiftScreen" 
+          component={AddGiftScreen} 
+          options = {({navigation})=>({
+            title: 'Add Gift/Prize',
+          })}/>
+          <Stack.Screen 
+            name = 'DebtsScreen' 
+            component={DebtsScreen} 
+            options = {({navigation})=>({
+              title: 'Debts',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddDebtScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddDebtScreen" 
+          component={AddDebtScreen} 
+          options = {({navigation})=>({
+            title: 'Add Debt',
           })}/>
       </Stack.Navigator>
     </NavigationContainer>

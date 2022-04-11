@@ -66,10 +66,16 @@ function DashboardScreen({navigation}){
                     <Tile text = "Savings" color = "#F4DD17" onClick = {()=>{
                         navigation.navigate('SavingsScreen')
                     }}/>
-                    <Tile text = "Donations/Helps" color = "#00BCD4" onClick = {()=>{}}/></View>
+                    <Tile text = "Donations/Helps" color = "#00BCD4" onClick = {()=>{
+                        navigation.navigate('DonationsScreen')
+                    }}/></View>
                 <View style = {{flex: 1, flexDirection: 'row'}}>
-                    <Tile text = "Debts" color = "#E91E63" onClick = {()=>{}}/>
-                    <Tile text = "Gifts/Prizes" color = "#3F51B5" onClick = {()=>{}}/>
+                    <Tile text = "Debts" color = "#E91E63" onClick = {()=>{
+                        navigation.navigate('DebtsScreen')
+                    }}/>
+                    <Tile text = "Gifts/Prizes" color = "#3F51B5" onClick = {()=>{
+                        navigation.navigate('GiftsScreen')
+                    }}/>
                 </View>
             </View>
         </SafeAreaView>

@@ -37,7 +37,7 @@ function SavingsScreen({navigation}){
                     timestamp = {item.time}
                     onItemClick = {()=>{
                         Alert.alert(
-                            "$" + item.amount,
+                            "Savings of $" + item.amount,
                             "Description: " + item.text +"\nTime: " + item.time,
                             [
                                 {text: "Edit", onPress: ()=>{

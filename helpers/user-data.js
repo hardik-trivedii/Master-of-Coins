@@ -13,6 +13,7 @@ export default class UserData{
     savings = []
     helps = []
     gifts = []
+    debts = []
 
     static getInstance(){
         if (UserData.this == null)

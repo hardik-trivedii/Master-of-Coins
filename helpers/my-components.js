@@ -47,15 +47,15 @@ function ListItem(props){
 function ListItemWithButton(props){
     return(
         <Pressable
-            style = {{flex: 1, borderRadius: 10, borderColor: 'gray', borderWidth: 1}}
+            style = {{flex: 1, borderRadius: 10, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white', margin: 5}}
             onPress = {props.onItemClick}>
-            <Text style = {{flex: 1, fontSize: 20, margin: 5}}>{props.title}</Text>
+            <Text style = {{flex: 1, fontSize: 15, margin: 5}}>{props.title}</Text>
             <View style = {{flex: 2, flexDirection: 'row'}}>
-                <Text style = {{flex: 3, fontSize: 40, fontWeight: 'bold', margin: 5}}>${props.price}</Text>
+                <Text style = {{flex: 3, fontSize: 30, fontWeight: 'bold', margin: 5}}>${props.price}</Text>
                 <Pressable
-                    style = {{flex: 1, backgroundColor: props.buttonColor, borderRadius: 5}}
+                    style = {({pressed})=>[{flex: 1, backgroundColor: pressed ? 'lightgray' : props.buttonColor, borderRadius: 5, margin: 5, alignItems: 'center', justifyContent: 'center'}]}
                     onPress = {props.onButtonClicked}>
-                        <Text style = {{fontSize: 10, color: 'white', fontWeight: 'bold'}}>{props.buttonText}</Text>
+                        <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>{props.buttonText}</Text>
                 </Pressable>
             </View>
             <Text style = {{flex: 1, margin: 5}}>{props.timestamp}</Text>
