@@ -2,24 +2,22 @@ import React from 'react'
 import {FlatList, Alert, Text, View} from 'react-native'
 import UserData from '../helpers/user-data'
 import {ListItem} from '../helpers/my-components'
-import { Expense } from '../helpers/data-models'
+import { Income } from '../helpers/data-models'
 import { remove, ref, getDatabase } from 'firebase/database'
 
 const user_data = UserData.getInstance()
-function PersonalExpenseScreen({navigation}){
-    const [expenses, setExpenses] = React.useState(user_data.personal_expenses)
+function SavingsScreen({navigation}){
+    const [savings, setSavings] = React.useState(user_data.savings)
     React.useEffect(()=>{
         const abortController = new AbortController()
-        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/personal_expenses', (snapshot)=>{
+        UserData.setValueUpdateOnPath('users/'+user_data.userID+'/savings', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
-                var id = 0
-                user_data.personal_expenses = []
+                user_data.savings = []
                 snapshot.forEach(element => {
-                    user_data.personal_expenses.push(new Expense(element.key, element.val().text, element.val().price, element.val().time))
-                    id += 1
+                    user_data.savings.push(new Income(element.key, element.val().text, element.val().amount, element.val().time))
                 });
-                setExpenses(user_data.personal_expenses)
+                setSavings(user_data.savings)
             }
         })
 
@@ -30,31 +28,31 @@ function PersonalExpenseScreen({navigation}){
 
      return(
         <FlatList
-            data = {expenses}
+            data = {savings}
             renderItem = {({item})=>{
                 return(
                     <ListItem
                     title = {item.text}
-                    price = {item.price}
+                    price = {item.amount}
                     timestamp = {item.time}
                     onItemClick = {()=>{
                         Alert.alert(
-                            "$" + item.price,
+                            "$" + item.amount,
                             "Description: " + item.text +"\nTime: " + item.time,
                             [
                                 {text: "Edit", onPress: ()=>{
-                                    navigation.navigate('AddPersonalExpenseScreen', {
+                                    navigation.navigate('AddSavingScreen', {
                                         id: item.id,
                                         text: item.text,
-                                        price: item.price
+                                        amount: item.amount
                                     })
                                 }},
                                 {text: "Delete", style: 'destructive', onPress: ()=>{
-                                    if(user_data.personal_expenses.length == 1){
-                                        setExpenses([])
-                                        user_data.personal_expenses = []
+                                    if(user_data.incomes.length == 1){
+                                        setSavings([])
+                                        user_data.savings = []
                                     }
-                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/personal_expenses/'+item.id))
+                                    remove(ref(getDatabase(), 'users/'+user_data.userID+'/savings/'+item.id))
                                     .catch((error)=>{
                                         console.log(error)
                                         Alert.alert(
@@ -77,11 +75,12 @@ function PersonalExpenseScreen({navigation}){
         ListEmptyComponent = {()=>{
             return(
                 <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style = {{marginTop: 200}}>No Personal Expenses Added.</Text>
+                    <Text style = {{marginTop: 200}}>No Savings Added.</Text>
                 </View>
+                
             )
         }}/>
     )
 }
 
-export default PersonalExpenseScreen;
+export default SavingsScreen;

@@ -10,6 +10,10 @@ import GroupsScreen from './screens/groups';
 import AddGroupScreen from './screens/add_group';
 import PersonalExpenseScreen from './screens/personal-expense';
 import AddPersonalExpenseScreen from './screens/add-personal-expense';
+import IncomesScreen from './screens/income';
+import AddIncomeScreen from './screens/add_income';
+import SavingsScreen from './screens/savings';
+import AddSavingScreen from './screens/add_saving';
 import { Pressable, Text } from 'react-native';
 
 const firebaseConfig = {
@@ -83,6 +87,46 @@ export default function App() {
           component={AddPersonalExpenseScreen} 
           options = {({navigation})=>({
             title: 'Add Personal Expense',
+          })}/>
+          <Stack.Screen 
+            name = 'IncomesScreen' 
+            component={IncomesScreen} 
+            options = {({navigation})=>({
+              title: 'Incomes',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddIncomeScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddIncomeScreen" 
+          component={AddIncomeScreen} 
+          options = {({navigation})=>({
+            title: 'Add Income',
+          })}/>
+          <Stack.Screen 
+            name = 'SavingsScreen' 
+            component={SavingsScreen} 
+            options = {({navigation})=>({
+              title: 'Incomes',
+              headerRight: ()=>(
+                <Pressable
+                  onPress = {()=>{
+                    navigation.navigate('AddSavingScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddSavingScreen" 
+          component={AddSavingScreen} 
+          options = {({navigation})=>({
+            title: 'Add Saving',
           })}/>
       </Stack.Navigator>
     </NavigationContainer>

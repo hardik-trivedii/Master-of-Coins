@@ -9,6 +9,10 @@ export default class UserData{
     password = '';
     groups = []
     personal_expenses = [];
+    incomes = []
+    savings = []
+    helps = []
+    gifts = []
 
     static getInstance(){
         if (UserData.this == null)

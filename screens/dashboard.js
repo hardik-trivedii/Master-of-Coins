@@ -52,7 +52,9 @@ function DashboardScreen({navigation}){
                 flex: 6,
             }}>
                 <View style = {{flex: 1, flexDirection: 'row'}}>
-                    <Tile text = "Income" color = "#8BC34A" onClick = {()=>{}}/>
+                    <Tile text = "Incomes" color = "#8BC34A" onClick = {()=>{
+                        navigation.navigate('IncomesScreen')
+                    }}/>
                     <Tile 
                         text = "Expenses" 
                         color = "#F44336" 
@@ -61,7 +63,9 @@ function DashboardScreen({navigation}){
                         }}/>
                 </View>
                 <View style = {{flex: 1, flexDirection: 'row'}}>
-                    <Tile text = "Savings" color = "#F4DD17" onClick = {()=>{}}/>
+                    <Tile text = "Savings" color = "#F4DD17" onClick = {()=>{
+                        navigation.navigate('SavingsScreen')
+                    }}/>
                     <Tile text = "Donations/Helps" color = "#00BCD4" onClick = {()=>{}}/></View>
                 <View style = {{flex: 1, flexDirection: 'row'}}>
                     <Tile text = "Debts" color = "#E91E63" onClick = {()=>{}}/>

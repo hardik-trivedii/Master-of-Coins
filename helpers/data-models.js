@@ -22,7 +22,7 @@ export class Member{
 }
 
 export class Expense{
-    id = 0
+    id = ''
     text = ''
     price = 0.00
     time = ''
@@ -31,6 +31,19 @@ export class Expense{
         this.text = text;
         this.time = time;
         this.price = price;
+    }
+}
+
+export class Income{
+    id = ''
+    text = ''
+    amount = 0.00
+    time = ''
+    constructor(id, text, amount, time){
+        this.id = id;
+        this.text = text;
+        this.time = time;
+        this.amount = amount;
     }
 }
 
