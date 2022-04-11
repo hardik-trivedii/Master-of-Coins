@@ -49,15 +49,18 @@ function downloadData(navigation){
                         user_data.email = snapshot.val().email;
                         user_data.password = snapshot.val().password; 
                         //parsing personal expenses in our model
-                        if(snapshot.val().personal_expenses != null){
-                            user_data.personal_expenses = []
-                            var index = 0
-                            snapshot.val().personal_expenses.forEach(element=>{
-                            var expense = new Expense(index, element.text, element.price, element.time);
-                            user_data.personal_expenses.push(expense)
-                            index += 1
+                        get(child(ref(database), 'users/' + userID + '/personal_expenses')).then((expenses)=>{
+                            if(expenses.exists()){
+                                user_data.personal_expenses = []
+                                var index = 0
+                                expenses.forEach(element=>{
+                                var expense = new Expense(element.key, element.val().text, element.val().price, element.val().time);
+                                user_data.personal_expenses.push(expense)
+                                index += 1
+                                })
+                            }
                         })
-                        }
+                        
                         if(snapshot.val().groups != null){
                             // Fetching groups data
                             var groupsPromises = snapshot.val().groups.map(id => {
@@ -91,14 +94,14 @@ function downloadData(navigation){
                                 }));
                         }
                     }else{
-                        onCompleted(false, ERROR_REASON_INCORRECT_PASSWORD)
+                        
                     }
                     } else {
-                        onCompleted(false, ERROR_REASON_NO_USER)
+                        
                     }
                 }).catch((error) => {
                     console.log(error)
-                    onCompleted(false, ERROR_REASON_FETCH_FAILURE)
+                    
                 });
             }else{
                 navigation.dispatch(

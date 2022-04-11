@@ -1,6 +1,6 @@
 import React from 'react'
 import {ScrollView, StyleSheet, Text, TextInput, Pressable, Alert, ActivityIndicator} from 'react-native'
-import { getDatabase, ref, set, get, child, push } from "firebase/database";
+import { getDatabase, ref, set, push, update } from "firebase/database";
 import UserData from '../helpers/user-data';
 import { format } from 'date-fns';
 
@@ -9,13 +9,20 @@ const PLACEHOLDER_PRICE = 'Price'
 
 const user_data = UserData.getInstance()
 
-function AddPersonalExpenseScreen({navigation}){
-    const [description, setDescription] = React.useState('')
-    const [price, setPrice] = React.useState('')
+function AddPersonalExpenseScreen({route, navigation}){
+    var expense_id, expense_text, expense_price;
+    if(route.params != null){
+        const {id, text, price} = route.params;
+        expense_id = id;
+        expense_text = text;
+        expense_price = price;
+    }
+    const [description, setDescription] = React.useState(expense_text != null ? expense_text : '')
+    const [price, setPrice] = React.useState(expense_price != null ? expense_price : '')
     const [isProcessing, setIsProcessing] = React.useState(false)
-
+    
     return(
-        <ScrollView>
+        <ScrollView  keyboardDismissMode="interactive" keyboardShouldPersistTaps='handled'>
             <TextInput 
                 style = {[{marginTop: 100},styles.text_field]}
                 onChangeText={(text)=>{
@@ -40,26 +47,49 @@ function AddPersonalExpenseScreen({navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
-                    const postListRef = ref(db, 'users/'+user_data.userID+'/personal_expenses');
-                    const newPostRef = push(postListRef);
-                    set(newPostRef,{
-                        text: description,
-                        price: price,
-                        time: format(new Date(), 'EEEE dd MMMM yyyy, HH:mm a')
-                    }).then(()=>{
-                        setIsProcessing(false)
-                        navigation.goBack()
-                    }).catch((error)=>{
-                        setIsProcessing(false)
-                        console.log(error)
-                        Alert.alert(
-                            "Error in Saving",
-                            "Something went wrong on our side, please try again", 
-                            [
-                                {text: 'OK', onPress: ()=>{}}
-                            ]
-                        )
-                    })
+                    if(expense_id == null){
+                        const dataRef = ref(db, 'users/'+user_data.userID+'/personal_expenses');
+                        set(push(dataRef),{
+                            text: description,
+                            price: price,
+                            time: format(new Date(), 'EEEE dd MMMM yyyy, HH:mm a')
+                        }).then(()=>{
+                            setIsProcessing(false)
+                            navigation.goBack()
+                        }).catch((error)=>{
+                            setIsProcessing(false)
+                            console.log(error)
+                            Alert.alert(
+                                "Error in Saving",
+                                "Something went wrong on our side, please try again", 
+                                [
+                                    {text: 'OK', onPress: ()=>{}}
+                                ]
+                            )
+                        })
+                    }else{
+                        const updates = {};
+                        updates['users/'+user_data.userID+'/personal_expenses/'+expense_id] = {
+                            text: description,
+                            price: price,
+                            time: format(new Date(), 'EEEE dd MMMM yyyy, HH:mm a')
+                        };
+                        update(ref(db), updates).then(()=>{
+                            setIsProcessing(false)
+                            navigation.goBack()
+                        }).catch((error)=>{
+                            setIsProcessing(false)
+                            console.log(error)
+                            Alert.alert(
+                                "Error in Saving",
+                                "Something went wrong on our side, please try again", 
+                                [
+                                    {text: 'OK', onPress: ()=>{}}
+                                ]
+                            )
+                        })
+                    }
+                    
                     
                 }}>
                     <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>Save</Text>
