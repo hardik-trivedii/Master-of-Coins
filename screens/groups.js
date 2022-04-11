@@ -9,6 +9,25 @@ function GroupsScreen({navigation}){
     const [invitations, setInvitations] = React.useState(0)
 
     const [groups, setGroupsData] = React.useState(user_data.groups)
+
+    React.useEffect(()=>{
+        // const abortController = new AbortController()
+        // UserData.setValueUpdateOnPath('users/'+user_data.userID+'/gifts', (snapshot)=>{
+        //     abortController.signal
+        //     if(snapshot.exists()){
+        //         user_data.gifts = []
+        //         snapshot.forEach(element => {
+        //             user_data.gifts.push(new Income(element.key, element.val().text, element.val().amount, element.val().time))
+        //         });
+        //         setGifts(user_data.gifts)
+        //     }
+        // })
+
+        // return ()=>{
+        //     abortController.abort();
+        // }
+    },[])
+
     return(
         <View style = {{flex: 1}}>
             <Pressable 

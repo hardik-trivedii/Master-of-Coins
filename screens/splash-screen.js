@@ -27,10 +27,6 @@ function SplashScreen({navigation}){
     )
 }
 
-const ERROR_REASON_NO_USER = "user_not_found"
-const ERROR_REASON_INCORRECT_PASSWORD = "incorrect_password"
-const ERROR_REASON_FETCH_FAILURE = "fetching_failure"
-
 function downloadData(navigation){
     const user_data = UserData.getInstance();
     try {
@@ -43,47 +39,52 @@ function downloadData(navigation){
                 const database = getDatabase();
                 get(child(ref(database), 'users/' + userID)).then((snapshot) => {
                     if (snapshot.exists()) {
-                    if(snapshot.val().email == userCredentials.email && snapshot.val().password == userCredentials.password){
-                        user_data.userID = snapshot.key;
-                        user_data.name = snapshot.val().name;
-                        user_data.email = snapshot.val().email;
-                        user_data.password = snapshot.val().password; 
-                        
-                        if(snapshot.val().groups != null){
-                            // Fetching groups data
-                            var groupsPromises = snapshot.val().groups.map(id => {
-                                return get(child(ref(database), 'groups/' + id))
-                            })
-                            Promise.all(groupsPromises).then((groups) => {
-                                user_data.groups = []
-                                groups.forEach(data =>{
-                                    var group = new Group(data.key, data.val().name)
-                                    data.val().members.forEach(element =>{
-                                        group.members.push(new Member(element.userID, element.name, element.email))
-                                    })
-                                    user_data.groups.push(group)                           
-                                })
-                                // All Done, set value update callbacks and Lets go to Dashboard
-                                
+                        if(snapshot.val().email == userCredentials.email && snapshot.val().password == userCredentials.password){
+                            user_data.userID = snapshot.key;
+                            user_data.name = snapshot.val().name;
+                            user_data.email = snapshot.val().email;
+                            user_data.password = snapshot.val().password; 
+                            
+                            if(snapshot.val().groups != null){
+                                // // Fetching groups data
+                                // var groupsPromises = snapshot.val().groups.map(id => {
+                                //     return get(child(ref(database), 'groups/' + id))
+                                // })
+                                // Promise.all(groupsPromises).then((groups) => {
+                                //     user_data.groups = []
+                                //     groups.forEach(data =>{
+                                //         var group = new Group(data.key, data.val().name)
+                                //         data.val().members.forEach(element =>{
+                                //             group.members.push(new Member(element.userID, element.name, element.email))
+                                //         })
+                                //         user_data.groups.push(group)                           
+                                //     })
+                                //     // All Done, set value update callbacks and Lets go to Dashboard
+                                    
+                                //     navigation.dispatch(
+                                //         CommonActions.reset({
+                                //         index: 0,
+                                //         routes: [{ name: "DashboardScreen" }]
+                                //         }));
+                                    
+                                // }).catch((error)=>{
+                                //     console.log(error)
+                                // });
                                 navigation.dispatch(
                                     CommonActions.reset({
                                     index: 0,
                                     routes: [{ name: "DashboardScreen" }]
                                     }));
-                                
-                            }).catch((error)=>{
-                                console.log(error)
-                            });
+                            }else{
+                                navigation.dispatch(
+                                    CommonActions.reset({
+                                    index: 0,
+                                    routes: [{ name: "DashboardScreen" }]
+                                    }));
+                            }
                         }else{
-                            navigation.dispatch(
-                                CommonActions.reset({
-                                  index: 0,
-                                  routes: [{ name: "DashboardScreen" }]
-                                }));
+                            
                         }
-                    }else{
-                        
-                    }
                     } else {
                         
                     }

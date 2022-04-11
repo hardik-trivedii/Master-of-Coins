@@ -64,19 +64,7 @@ export default function App() {
           })}/>
         <Stack.Screen 
           name = "AddGroupScreen" 
-          component={AddGroupScreen} 
-          options = {({navigation})=>({
-            title: 'Add Group',
-            headerRight: ()=>(
-              <Pressable
-                style = {{margin: 5}}
-                onPress = {()=>{
-                  
-                }}>
-                  <Text style = {{color: 'blue'}}>Save</Text>
-                </Pressable>
-            )
-          })}/>
+          component={AddGroupScreen}/>
           <Stack.Screen 
             name = 'PersonalExpenseScreen' 
             component={PersonalExpenseScreen} 
