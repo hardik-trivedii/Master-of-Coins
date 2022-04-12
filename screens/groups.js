@@ -37,8 +37,12 @@ function GroupsScreen({navigation}){
                 Promise.all(groupsPromises).then((groupsData)=>{
                     groupsData.forEach(data=>{
                         var group = new Group(data.key, data.val().name)
+                        group.members.push(new Member(user_data.userID,user_data.name,user_data.email))
                         data.val().members.forEach(item=>{
-                            group.members.push(new Member("","",item.email))
+                            if(item.invitationAccepted)
+                                group.members.push(new Member(item.userID,item.name,item.email))
+                            else
+                                group.pendingMembers.push(new Member("","",item.email))
                         })
                         user_data.groups.push(group)
                     })
@@ -62,10 +66,10 @@ function GroupsScreen({navigation}){
                 renderItem = {({item})=>{
                     return(
                         <ListItemTile
-                            text = {item['name']}
+                            text = {item.name}
                             color = 'red'
                             onClick = {()=>{
-                                
+                                navigation.navigate('GroupExpenseScreen', {id: item.id, members: item.members})
                             }}/>
                     )
                 }}/>

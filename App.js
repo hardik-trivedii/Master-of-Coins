@@ -24,6 +24,8 @@ import { Pressable, Text } from 'react-native';
 import ProfileSettingsScreen from './screens/profile_settings';
 import ChangeNameScreen from './screens/change_name';
 import ChangePasswordScreen from './screens/change_password';
+import GroupExpenseScreen from './screens/group-expenses';
+import AddGroupExpenseScreen from './screens/add-group-expense';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDv00MUbusng7OKLpCZIindbQe9ZGE2yo4",
@@ -85,6 +87,27 @@ export default function App() {
           component={AddPersonalExpenseScreen} 
           options = {({navigation})=>({
             title: 'Add Personal Expense',
+          })}/>
+          <Stack.Screen 
+            name = 'GroupExpenseScreen' 
+            component={GroupExpenseScreen} 
+            options = {({navigation})=>({
+              title: 'Group Expenses',
+              headerRight: ()=>(
+                <Pressable
+                style = {{margin: 5}}
+                  onPress = {()=>{
+                    navigation.navigate('AddGroupExpenseScreen')
+                  }}>
+                    <Text style = {{color: 'blue'}}>Add</Text>
+                  </Pressable>
+              )
+          })}/>
+          <Stack.Screen 
+          name = "AddGroupExpenseScreen" 
+          component={AddGroupExpenseScreen} 
+          options = {({navigation})=>({
+            title: 'Add Group Expense',
           })}/>
           <Stack.Screen 
             name = 'IncomesScreen' 

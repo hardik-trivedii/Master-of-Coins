@@ -2,6 +2,7 @@ export class Group{
     id = ""
     name = ""
     members = []
+    pendingMembers = []
 
     constructor(id, name){
         this.id = id
@@ -63,5 +64,9 @@ export class Debt{
 }
 
 export class GroupExpense extends Expense{
-
+    payee = {}
+    constructor(id, text, price, time, payee){
+        super(id, text, price, time);
+        this.payee = payee;
+    }
 }
