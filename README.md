@@ -1,11 +1,32 @@
 <p align = "center"><img src="assets/icon.png" width="200" height="200"/></p>
 <h1 align="center">Master of Coins</h1>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Version](https://img.shields.io/badge/version-v1.4.5-blue.svg)
 ![React Native](https://img.shields.io/badge/react%20native-v17.0.1-red.svg)
 ![Firebase](https://img.shields.io/badge/firebase-v9.6.10-orange.svg)
 ![License](https://img.shields.io/badge/license-no%20license-brightgreen.svg)
+
+# Table of Contents
+1. [Introduction](#introduction)
+2. [Features](#features)<br>
+    2.1 [User Management](#user-management)<br>
+    2.2 [Dashboard](#dashboard)<br>
+    2.3 [Expenditure Management](#expenditure-management)<br>
+    2.4 [Debts Management](#debts-management)<br>
+    2.5 [Incomes, Savings and Other Transactions Management](#incomes-savings-and-other-transactions-management)<br>
+3. [Installation Guide](#installation-guide)<br>
+    3.1 [Step 1: Install the Expo CLI](#step-1-install-expo-cli)<br>
+    3.2 [Step 2: Clone the Repository](#step-2-clone-the-repository)<br>
+    3.3 [Install the Dependencies](#step-3-install-the-dependencies)<br>
+    3.4 [Run the Project](#step-4-run-the-project)<br>
+    3.5 [Generating Executables](#step-5-generating-executables)<br>
+4. [Project Files Description](#project-files-description)
+5. [How to Contribute?](#how-to-contribute)
+6. [Support](#support)
+7. [License](#license)
+8. [Author](#author)
+9. [About this Project](#about-this-project)
 
 # Introduction
 Generally, people don't keep track of their monetary transactions, but those who do, often tends to use papers or diaries. And many times they don't even remember where they put those papers. So to manage monetary transactions and keep track of all the savings, earnings and expenses, here I present a mobile application solution which do all of these for us. The application is named **Master of Coins** because it was the position in the small council of the Game of Thrones series who manages all the financial and monetary transactions and our application does the same. <br/>[ Image Source: [tzr.io](https://www.tzr.io/yarn-clip/5c88db7a-e5cf-40d5-8a10-e59b059fb566/gif) ]
