@@ -72,6 +72,7 @@ export default function App() {
               title: 'Personal Expenses',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddPersonalExpenseScreen')
                   }}>
@@ -92,6 +93,7 @@ export default function App() {
               title: 'Incomes',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddIncomeScreen')
                   }}>
@@ -112,6 +114,7 @@ export default function App() {
               title: 'Savings',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddSavingScreen')
                   }}>
@@ -132,6 +135,7 @@ export default function App() {
               title: 'Donations/Help',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddDonationScreen')
                   }}>
@@ -152,6 +156,7 @@ export default function App() {
               title: 'Gifts/Prizes',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddGiftScreen')
                   }}>
@@ -172,6 +177,7 @@ export default function App() {
               title: 'Debts',
               headerRight: ()=>(
                 <Pressable
+                style = {{margin: 5}}
                   onPress = {()=>{
                     navigation.navigate('AddDebtScreen')
                   }}>
