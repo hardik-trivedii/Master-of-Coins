@@ -132,7 +132,9 @@ Student ID : **200439820**<br/>
 <a href='mailto:hdt533@uregina.ca'>
     <img src='https://img.shields.io/badge/Email-Me-green'>
   </a>
-[![<user_name>'s Stack Overflow Reputation](https://img.shields.io/stackexchange/stackoverflow/r/6254678?color=orange&label=reputation&logo=stackoverflow&style=for-the-badge)](https://stackoverflow.com/users/6254678 "hardik-trivedi's Stack Overflow Reputation")
+<a href='https://stackoverflow.com/users/6254678'>
+    <img src='https://img.shields.io/badge/Stack%20Overflow-401-orange'>
+  </a>
 ![social](https://img.shields.io/github/followers/hardik-trivedii?style=social)
 ![social](https://img.shields.io/twitter/follow/HardikTrivedi_D?style=social)
 # About this Project
