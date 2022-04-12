@@ -1,7 +1,7 @@
 <p align = "center"><img src="assets/icon.png" width="200" height="200"/></p>
-<p style = "font-size: 50px" align="center">Master of Coins</p>
+<h1 align="center">Master of Coins</h1>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Version](https://img.shields.io/badge/version-v1.4.2-blue.svg)
 ![React Native](https://img.shields.io/badge/react%20native-v17.0.1-red.svg)
 ![Firebase](https://img.shields.io/badge/firebase-v9.6.10-orange.svg)
@@ -16,45 +16,45 @@ Generally, people don't keep track of their monetary transactions, but those who
 ## User Management
 Users need to create an account using their email address. The account is required to save all the user specific data and user can get all the data back when signs into account. User can log out from the account or can permanently delete the account, if wishes. As account is created on email, user can change name and password except email address.
 <br/>
-<img src="assets/screen-shots/IMG-0456.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0457.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0459.png" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0456.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0457.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0459.PNG" width="230" height="500"/>
 
 ## Dashboard
 Here, Master of Coins welcomes you. You can see all the six categories which most probably are the causes of our monetary transactions, namely **Incomes**, **Expenses**, **Savings**, **Donations/Help**, **Debts** and **Gifts/Prizes**.
 <br/>
-<img src="assets/screen-shots/IMG-0465.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0460.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0461.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0462.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0463.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0464.png" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0465.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0460.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0461.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0462.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0463.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0464.PNG" width="230" height="500"/>
 
 ## Expenditure Management
 Mostly, we need to manage how much we spend on our personal needs or in group hangouts. Master of Coins gives you the feature to manage personal expenses and group expenses. You can edit or delete any record by clicking on it.
 <br/>
-<img src="assets/screen-shots/IMG-0469.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0470.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0471.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0472.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0473.png" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0469.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0470.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0471.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0472.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0473.PNG" width="230" height="500"/>
 
 ## Debts Management
 Many times we forget whom to pay back or where to pay back like credit card bills or money lent from friend. So here comes Master of Coins Debts Management feature, you can add the debt when taken, it shows a button, you can actually clear the debt when paid. You can edit or delete any record by clicking on it.
 <br/>
-<img src="assets/screen-shots/IMG-0478.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0479.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0480.png" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0478.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0479.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0480.PNG" width="230" height="500"/>
 
 ## Incomes, Savings and Other Transactions Management
 Along with debts and expenses, we do have transactions on positive side like incomes, savings, donations and gifts or prize money. Master of Coins provides features to manage all of them under a single application. You can edit or delete any record by clicking on it.
 <br/>
-<img src="assets/screen-shots/IMG-0466.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0467.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0468.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0474.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0475.png" width="230" height="500"/>
-<img src="assets/screen-shots/IMG-0477.png" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0466.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0467.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0468.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0474.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0475.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0477.PNG" width="230" height="500"/>
 
 # Installation Guide
 ## Step 1: Install Expo CLI
@@ -80,7 +80,7 @@ If everything has gone well upto here, then we are good to go for running this p
 $ expo start
 ```
 If it runs perfectly, you can expect somewhat following results in command line:
-<p align = "center"><img src="assets/expo-start-output.png" width="500" height="400"/><br/></p>
+<p align = "center"><img src="assets/expo-start-output.PNG" width="500" height="400"/><br/></p>
 
 You can follow the in-screen commands to run in specific environment. If you scan this QR code to run in the mobile device, you might encounter an error saying ```coundn't connect to development server``` in the first time run. This is happening because building process is taking longer than expected time of expo client app in our mobile phones. The solution is, scan the QR code again and let the development server build the app again. This would resolve the problem and you can see the app running in the mobile phone. If problem persists, then wait for the development server to finish all its building tasks.
 
