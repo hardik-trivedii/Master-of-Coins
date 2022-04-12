@@ -1,8 +1,12 @@
+/**
+ * All the model classes and their members are given self-explanatory names
+ */
 export class Group{
     id = ""
     name = ""
     members = []
     pendingMembers = []
+    expenses = []
 
     constructor(id, name){
         this.id = id

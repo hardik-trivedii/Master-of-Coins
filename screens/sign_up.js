@@ -148,8 +148,10 @@ const ERROR_REASON_SAVING_FAILURE = "saving_failure"
 const ERROR_REASON_FETCHING_FAILURE = "fetching_failure"
 
 function register_user(name, email, password, onCompleted){
+    // generate user id from email by replacing '.' with '_'
     var userID = email.replace(/\./g, "_");
     const database = getDatabase();
+    // saving user information to database
     get(child(ref(database), 'users/' + userID)).then((snapshot) => {
         if (snapshot.exists()) {
           onCompleted(false, ERROR_REASON_DUPLICATE_USER)
@@ -159,6 +161,7 @@ function register_user(name, email, password, onCompleted){
                 email: email,
                 password : password
               }).then(()=>{
+                  // save user information to async storage so that user don't need to sign in again and again
                 storeUserCreds(snapshot.val().email, snapshot.val().password, (success)=>{
                     onCompleted(true, null)
                 })

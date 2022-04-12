@@ -26,6 +26,7 @@ import ChangeNameScreen from './screens/change_name';
 import ChangePasswordScreen from './screens/change_password';
 import GroupExpenseScreen from './screens/group-expenses';
 import AddGroupExpenseScreen from './screens/add-group-expense';
+import InvitationsScreen from './screens/invitations';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDv00MUbusng7OKLpCZIindbQe9ZGE2yo4",
@@ -231,6 +232,12 @@ export default function App() {
           component={ChangePasswordScreen} 
           options = {({navigation})=>({
             title: 'Change Password',
+          })}/>
+          <Stack.Screen 
+          name = "InvitationsScreen" 
+          component={InvitationsScreen} 
+          options = {({navigation})=>({
+            title: 'Group Invites',
           })}/>
       </Stack.Navigator>
     </NavigationContainer>

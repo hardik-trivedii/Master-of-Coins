@@ -10,6 +10,7 @@ const PLACEHOLDER_PRICE = 'Price'
 const user_data = UserData.getInstance()
 
 function AddPersonalExpenseScreen({route, navigation}){
+    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
     var expense_id, expense_text, expense_price;
     if(route.params != null){
         const {id, text, price} = route.params;
@@ -47,6 +48,7 @@ function AddPersonalExpenseScreen({route, navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
+                    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
                     if(expense_id == null){
                         const dataRef = ref(db, 'users/'+user_data.userID+'/personal_expenses');
                         set(push(dataRef),{

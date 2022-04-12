@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput, Text, Pressable, StyleSheet, 
-    ActivityIndicator, Alert, ScrollView, SafeAreaView, Image} from 'react-native'
+    ActivityIndicator, Alert, ScrollView, Image} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
@@ -43,6 +43,7 @@ function SignInScreen({navigation}){
                     styles.button
                 ]}
                 onPress={()=>{
+                    // email and password validation
                     if(emailText == '' || password == ''){
                         Alert.alert(
                             "Fields are empty",
@@ -121,15 +122,18 @@ const ERROR_REASON_FETCH_FAILURE = "fetching_failure"
 
 const user_data = UserData.getInstance();
 function signIn(email, password, onCompleted){
+    // signing in process - generate userID and check the entered data with database
     var userID = email.replace(/\./g, "_");
     const database = getDatabase();
     get(child(ref(database), 'users/' + userID)).then((snapshot) => {
         if (snapshot.exists()) {
           if(snapshot.val().email == email && snapshot.val().password == password){
+              // data matches, store values and take user to Dashboard
             user_data.userID = snapshot.key;
             user_data.name = snapshot.val().name;
             user_data.email = snapshot.val().email;
-            user_data.password = snapshot.val().password; 
+            user_data.password = snapshot.val().password;
+            //store user credentials for future automatic logins 
             storeUserCreds(snapshot.val().email, snapshot.val().password, (success)=>{
                 onCompleted(true, null)
             }) 

@@ -26,11 +26,13 @@ function AddGroupScreen({navigation}){
                   })
                   const dataRef = ref(getDatabase(), 'groups/');
                   const groupIDRef = push(dataRef)
+                  // creating new group
                   set(groupIDRef,{
                       name: groupName,
                       members: justEmails
                   }).then(()=>{
                       justEmails.forEach(element =>{
+                          // then sending invitations to the members
                           var userID = element.email.replace(/\./g, "_")
                           get(ref(getDatabase(), 'users/'+userID)).then((snap)=>{
                               if(snap.exists()){
@@ -40,6 +42,7 @@ function AddGroupScreen({navigation}){
                           }).catch((error)=>{console.log(error)})
                           
                       })
+                      // add ourself in the group as well
                       set(push(ref(getDatabase(), 'users/'+user_data.userID+'/groups')), groupIDRef.key);
                       setIsProcessing(false)
                       navigation.goBack()

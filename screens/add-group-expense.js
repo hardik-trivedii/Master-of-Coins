@@ -12,6 +12,7 @@ const PLACEHOLDER_PRICE = 'Price'
 const user_data = UserData.getInstance()
 
 function AddGroupExpenseScreen({route, navigation}){
+    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
     var group_id, expense_id, expense_text, expense_price, payee, group_members = [];
     if(route.params != null){
         const {gid, id, text, price, payee_mem, members} = route.params;
@@ -66,6 +67,7 @@ function AddGroupExpenseScreen({route, navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
+                    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
                     if(expense_id == null){
                         const dataRef = ref(db, 'groups/'+group_id+'/expenses');
                         set(push(dataRef),{

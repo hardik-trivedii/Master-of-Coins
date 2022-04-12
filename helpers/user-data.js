@@ -1,6 +1,7 @@
 import { getDatabase, ref, get, child, onValue, off } from "firebase/database";
 import { Group, Expense, Member } from "./data-models";
 
+// singleton class - to store user data at one place and access over the application
 export default class UserData{
     static this = null;
     userID = '';

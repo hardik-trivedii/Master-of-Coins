@@ -13,6 +13,7 @@ function GroupsScreen({navigation}){
     const [groups, setGroupsData] = React.useState(user_data.groups)
 
     React.useEffect(()=>{
+        // to manage subscriptions
         const abortController = new AbortController()
         UserData.setValueUpdateOnPath('users/'+user_data.userID+'/invitations', (snapshot)=>{
             abortController.signal
@@ -26,14 +27,18 @@ function GroupsScreen({navigation}){
             }
         })
 
+        // setting value update callback on groups data
         UserData.setValueUpdateOnPath('users/'+user_data.userID+'/groups', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
                 user_data.groups = []
                 var groupsPromises = []
+                // groups data are stored apart from user data so taking all the group IDs
+                // and executing data fetch using those IDs from groups data
                 snapshot.forEach(element => {
                     groupsPromises.push(get(ref(getDatabase(), 'groups/'+element.val())))
                 });
+                // executing all the group data fetching
                 Promise.all(groupsPromises).then((groupsData)=>{
                     groupsData.forEach(data=>{
                         var group = new Group(data.key, data.val().name)
@@ -58,7 +63,10 @@ function GroupsScreen({navigation}){
     return(
         <View style = {{flex: 1, backgroundColor: 'white'}}>
             <Pressable 
-                style = {({pressed})=>[{height: statusHeight, backgroundColor: pressed ? 'lightgray' : 'green'}]}>
+                style = {({pressed})=>[{height: statusHeight, backgroundColor: pressed ? 'lightgray' : 'green'}]}
+                onPress = {()=>{
+                    navigation.navigate('InvitationsScreen')
+                }}>
                 <Text style = {{color: 'white', margin: 10}}>{invitations} group inviations pending</Text>
             </Pressable>
             <FlatList

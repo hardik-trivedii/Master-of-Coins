@@ -11,6 +11,7 @@ const user_data = UserData.getInstance()
 
 function AddDebtScreen({route, navigation}){
     var debt_id, debt_text, debt_amount, debt_isCleared;
+    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
     if(route.params != null){
         const {id, text, amount, isCleared} = route.params;
         debt_id = id;
@@ -48,6 +49,7 @@ function AddDebtScreen({route, navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
+                    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
                     if(debt_id == null){
                         const dataRef = ref(db, 'users/'+user_data.userID+'/debts');
                         set(push(dataRef),{

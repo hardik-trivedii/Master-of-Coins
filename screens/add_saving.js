@@ -11,6 +11,7 @@ const user_data = UserData.getInstance()
 
 function AddSavingScreen({route, navigation}){
     var saving_id, saving_text, saving_amount;
+    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
     if(route.params != null){
         const {id, text, amount} = route.params;
         saving_id = id;
@@ -47,6 +48,7 @@ function AddSavingScreen({route, navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
+                    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
                     if(saving_id == null){
                         const dataRef = ref(db, 'users/'+user_data.userID+'/savings');
                         set(push(dataRef),{

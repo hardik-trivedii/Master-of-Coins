@@ -9,6 +9,7 @@ const user_data = UserData.getInstance();
 function DashboardScreen({navigation}){
     const [usersName, setUsersName] = React.useState(user_data.name);
     React.useEffect(()=>{
+        // setting value update callback for realtime update
         UserData.setValueUpdateOnPath('users/'+user_data.userID, (snapshot)=>{
             if(snapshot.exists()){
                 user_data.name = snapshot.val().name

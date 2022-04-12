@@ -2,7 +2,7 @@
 <h1 align="center">Master of Coins</h1>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![Version](https://img.shields.io/badge/version-v1.4.4-blue.svg)
+![Version](https://img.shields.io/badge/version-v1.4.5-blue.svg)
 ![React Native](https://img.shields.io/badge/react%20native-v17.0.1-red.svg)
 ![Firebase](https://img.shields.io/badge/firebase-v9.6.10-orange.svg)
 ![License](https://img.shields.io/badge/license-no%20license-brightgreen.svg)
@@ -31,13 +31,16 @@ Here, Master of Coins welcomes you. You can see all the six categories which mos
 <img src="assets/screen-shots/IMG-0464.PNG" width="230" height="500"/>
 
 ## Expenditure Management
-Mostly, we need to manage how much we spend on our personal needs or in group hangouts. Master of Coins gives you the feature to manage personal expenses and group expenses. You can edit or delete any record by clicking on it.
+Mostly, we need to manage how much we spend on our personal needs or in group hangouts. Master of Coins gives you the feature to manage personal expenses and group expenses. You can edit or delete any record by clicking on it. You can create groups, add members in them (only registered members can be added via their registered email address) and then you can manage group expenses by simply adding them as others. You can also choose who paid the bill. Only member who have accepted the group invitation, can be seen in the group activities. Group invitations can be seen in the Groups screen. User has choice to accept the invitation or decline it.
 <br/>
 <img src="assets/screen-shots/IMG-0469.PNG" width="230" height="500"/>
 <img src="assets/screen-shots/IMG-0470.PNG" width="230" height="500"/>
 <img src="assets/screen-shots/IMG-0471.PNG" width="230" height="500"/>
 <img src="assets/screen-shots/IMG-0472.PNG" width="230" height="500"/>
 <img src="assets/screen-shots/IMG-0473.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0481.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0482.PNG" width="230" height="500"/>
+<img src="assets/screen-shots/IMG-0483.PNG" width="230" height="500"/>
 
 ## Debts Management
 Many times we forget whom to pay back or where to pay back like credit card bills or money lent from friend. So here comes Master of Coins Debts Management feature, you can add the debt when taken, it shows a button, you can actually clear the debt when paid. You can edit or delete any record by clicking on it.
@@ -99,7 +102,8 @@ If you want to build executables for the mobile platforms like Android APK or iO
     - **splash.js** : for initial data fetching and user verification
     - **sign_in.js**, **sign_up.js**, **profile_settings**, **change_name.js**, **change_password**: for user management
     - **dashboard.js** : for the dashboard showcasing all the features tiles
-    - **expenses.js**, **personal-expenses.js**, **groups.js**, **add-personal-expense.js**, **add_group.js** : for expenditure management
+    - **expenses.js**, **personal-expenses.js**, **groups.js**, **add-personal-expense.js**, **add_group.js**, **add-group-expense.js**, **group-expenses** : for expenditure management
+    - **invitations.js** : to manage group invitations
     - **income.js**, **add_income.js** : to show incomes previously saved and to add new income source and amount
     - **savings.js**, **add_saving.js**, **debts.js**, **add_debt.js**, **gifts.js**, **add_gift.js**, **donations.js**, **add_donation.js** : same as above, to show particular transaction and to add one
 - **helpers** : folder containing all the helping files

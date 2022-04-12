@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Pressable, Text, StyleSheet} from 'react-native'
 
-
+// Dashboard Tile
 function Tile(props){
     return(
         <Pressable 
@@ -12,6 +12,7 @@ function Tile(props){
     )
 }
 
+// Expenses and Group showing tile
 function WideTile(props){
     return(
         <Pressable 
@@ -63,6 +64,24 @@ function ListItemWithButton(props){
     )
 }
 
+function InviteListItem(props){
+    return(
+        <View style = {{flex: 1, flexDirection: 'row', margin: 5, backgroundColor: 'white'}}>
+            <Text style = {{flex: 3, fontSize: 20, margin: 5}}>{props.groupName}</Text>
+            <Pressable
+                    style = {({pressed})=>[{flex: 1, backgroundColor: pressed ? 'lightgray' : 'green', borderRadius: 5, margin: 5, alignItems: 'center', justifyContent: 'center'}]}
+                    onPress = {props.onAcceptClicked}>
+                        <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Accept</Text>
+            </Pressable>
+            <Pressable
+                    style = {({pressed})=>[{flex: 1, backgroundColor: pressed ? 'lightgray' : 'red', borderRadius: 5, margin: 5, alignItems: 'center', justifyContent: 'center'}]}
+                    onPress = {props.onDeclineClicked}>
+                        <Text style = {{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Decline</Text>
+            </Pressable>
+        </View>
+    )
+}
+
 const styles = StyleSheet.create({
     dashboard_tile:{
         flex: 1,  
@@ -92,8 +111,9 @@ const styles = StyleSheet.create({
     }
 })
 
+// Need to export one view so that others in group can be exported
 export default function MyComps(){
     return(<View></View>)
 }
 
-export {Tile, WideTile, ListItem, ListItemWithButton, ListItemTile};
+export {Tile, WideTile, ListItem, ListItemWithButton, ListItemTile, InviteListItem};

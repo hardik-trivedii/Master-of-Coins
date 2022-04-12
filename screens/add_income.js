@@ -11,6 +11,7 @@ const user_data = UserData.getInstance()
 
 function AddIncomeScreen({route, navigation}){
     var income_id, income_text, income_amount;
+    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
     if(route.params != null){
         const {id, text, amount} = route.params;
         income_id = id;
@@ -47,6 +48,7 @@ function AddIncomeScreen({route, navigation}){
                 onPress = {()=>{
                     setIsProcessing(true)
                     const db = getDatabase();
+                    // route parameters are checked, if found, this screen will act as Update screen, otherwise Add screen
                     if(income_id == null){
                         const dataRef = ref(db, 'users/'+user_data.userID+'/incomes');
                         set(push(dataRef),{

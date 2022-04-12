@@ -7,6 +7,7 @@ import UserData from '../helpers/user-data';
 import {Group, Member, Expense} from '../helpers/data-models'
 
 function SplashScreen({navigation}){
+    // for showing ActivityIndicator
     const [isProcessing, setIsProcessing] = React.useState(true)
     downloadData(navigation)
     return(
@@ -27,10 +28,11 @@ function SplashScreen({navigation}){
     )
 }
 
+// download user data once and validate user info stored previously in async storage
 function downloadData(navigation){
     const user_data = UserData.getInstance();
     try {
-        // User crdentials retrieved
+        // User crdentials retrieved, Automatic Login
         AsyncStorage.getItem('user_creds').then((result)=>{
             var userCredentials = result != null ? JSON.parse(result) : null
             if(userCredentials != null){
@@ -39,12 +41,13 @@ function downloadData(navigation){
                 const database = getDatabase();
                 get(child(ref(database), 'users/' + userID)).then((snapshot) => {
                     if (snapshot.exists()) {
+                        // validating user info with stored one
                         if(snapshot.val().email == userCredentials.email && snapshot.val().password == userCredentials.password){
                             user_data.userID = snapshot.key;
                             user_data.name = snapshot.val().name;
                             user_data.email = snapshot.val().email;
                             user_data.password = snapshot.val().password; 
-                            
+                            // All good, let's go to Dashboard
                             navigation.dispatch(
                                 CommonActions.reset({
                                     index: 0,
@@ -61,6 +64,7 @@ function downloadData(navigation){
                     
                 });
             }else{
+                // User info doesn't match, take user to sign in again
                 navigation.dispatch(
                     CommonActions.reset({
                       index: 0,

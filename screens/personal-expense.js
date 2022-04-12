@@ -9,15 +9,15 @@ const user_data = UserData.getInstance()
 function PersonalExpenseScreen({navigation}){
     const [expenses, setExpenses] = React.useState(user_data.personal_expenses)
     React.useEffect(()=>{
+        // to manage subscriptions in here
         const abortController = new AbortController()
+        // setting value update callback for realtime update
         UserData.setValueUpdateOnPath('users/'+user_data.userID+'/personal_expenses', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
-                var id = 0
                 user_data.personal_expenses = []
                 snapshot.forEach(element => {
                     user_data.personal_expenses.push(new Expense(element.key, element.val().text, element.val().price, element.val().time))
-                    id += 1
                 });
                 setExpenses(user_data.personal_expenses)
             }
@@ -50,6 +50,8 @@ function PersonalExpenseScreen({navigation}){
                                     })
                                 }},
                                 {text: "Delete", style: 'destructive', onPress: ()=>{
+                                    // Last item deletion cannot give us update callback so manually removing
+                                    // last item from array
                                     if(user_data.personal_expenses.length == 1){
                                         setExpenses([])
                                         user_data.personal_expenses = []

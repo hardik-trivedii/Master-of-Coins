@@ -6,9 +6,8 @@ import { GroupExpense, Member } from '../helpers/data-models'
 import { remove, ref, getDatabase } from 'firebase/database'
 
 const user_data = UserData.getInstance()
-var group_expenses = []
 function GroupExpenseScreen({route, navigation}){
-    
+    var group_expenses = []
     const [expenses, setExpenses] = React.useState([])
     var groupID = '', group_members = []
     if(route.params != null){
@@ -25,7 +24,7 @@ function GroupExpenseScreen({route, navigation}){
                   onPress = {()=>{
                     navigation.navigate('AddGroupExpenseScreen', {
                         gid: groupID,
-                        payee_mem: new Member(user_data.id, user_data.name, user_data.email),
+                        payee_mem: new Member(user_data.userID, user_data.name, user_data.email),
                         members: group_members
                     })
                   }}>
@@ -33,10 +32,11 @@ function GroupExpenseScreen({route, navigation}){
                   </Pressable>
               )
         })
-        group_expenses = []
+        
         const abortController = new AbortController()
         UserData.setValueUpdateOnPath('groups/'+groupID+'/expenses', (snapshot)=>{
             abortController.signal
+            group_expenses = []
             if(snapshot.exists()){
                 snapshot.forEach(element => {
                     group_expenses.push(new GroupExpense(element.key, element.val().text, element.val().price, element.val().time, element.val().payee))
@@ -75,7 +75,7 @@ function GroupExpenseScreen({route, navigation}){
                                     })
                                 }},
                                 {text: "Delete", style: 'destructive', onPress: ()=>{
-                                    if(group_expenses.length == 1){
+                                    if(group_expenses.length == 0){
                                         setExpenses([])
                                         group_expenses = []
                                     }

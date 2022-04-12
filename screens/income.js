@@ -9,7 +9,9 @@ const user_data = UserData.getInstance()
 function IncomesScreen({navigation}){
     const [incomes, setIncomes] = React.useState(user_data.incomes)
     React.useEffect(()=>{
+        // to manage subscriptions in here
         const abortController = new AbortController()
+        // setting value update callback for realtime update
         UserData.setValueUpdateOnPath('users/'+user_data.userID+'/incomes', (snapshot)=>{
             abortController.signal
             if(snapshot.exists()){
