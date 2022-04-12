@@ -14,6 +14,7 @@ export default class UserData{
     helps = []
     gifts = []
     debts = []
+    invitations = []
 
     static getInstance(){
         if (UserData.this == null)

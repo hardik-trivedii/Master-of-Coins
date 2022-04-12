@@ -2,7 +2,7 @@
 <h1 align="center">Master of Coins</h1>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![Version](https://img.shields.io/badge/version-v1.4.2-blue.svg)
+![Version](https://img.shields.io/badge/version-v1.4.3-blue.svg)
 ![React Native](https://img.shields.io/badge/react%20native-v17.0.1-red.svg)
 ![Firebase](https://img.shields.io/badge/firebase-v9.6.10-orange.svg)
 ![License](https://img.shields.io/badge/license-no%20license-brightgreen.svg)

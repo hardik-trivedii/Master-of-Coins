@@ -35,11 +35,12 @@ function AddGroupScreen({navigation}){
                           get(ref(getDatabase(), 'users/'+userID)).then((snap)=>{
                               if(snap.exists()){
                                 
-                                set(push(ref(getDatabase(), 'users/'+userID+(userID == user_data.userID ? '/groups' : '/invitations'))), groupIDRef.key)
+                                set(push(ref(getDatabase(), 'users/'+userID+'/invitations')), groupIDRef.key)
                               }
                           }).catch((error)=>{console.log(error)})
                           
                       })
+                      set(push(ref(getDatabase(), 'users/'+user_data.userID+'/groups')), groupIDRef.key);
                       setIsProcessing(false)
                       navigation.goBack()
                   }).catch((error)=>{

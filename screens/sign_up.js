@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TextInput, Text, Pressable, StyleSheet, Alert, ActivityIndicator, ScrollView, Image} from 'react-native'
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { CommonActions } from '@react-navigation/native';
+import { storeUserCreds } from './sign_in';
 
 const NAME_PLACEHOLDER_TEXT = "Name";
 const EMAIL_PLACEHOLDER_TEXT = "Email";
@@ -158,7 +159,9 @@ function register_user(name, email, password, onCompleted){
                 email: email,
                 password : password
               }).then(()=>{
-                onCompleted(true, null)
+                storeUserCreds(snapshot.val().email, snapshot.val().password, (success)=>{
+                    onCompleted(true, null)
+                })
               }).catch((error)=>{
                 console.log(error)
                 onCompleted(false, ERROR_REASON_SAVING_FAILURE)
